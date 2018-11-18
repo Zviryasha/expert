@@ -56,6 +56,28 @@ char *deletcoment(char *s)
 	return (line);
 }
 
+int check_quotes(char *s)
+{
+	int i;
+	int c1;
+	int c2;
+
+	c1 = 0;
+	c2 = 0;
+	i = -1;
+	while (s[++i] != '\0')
+	{
+		if (s[i] == ')')
+			c1++;
+		if (s[i] == '(')
+			c2++;
+	}
+	if (c1 == c2)
+		return (1);
+	else
+		return (0);
+}
+
 int checkvalidy(char *line)
 {
 	char **s;
@@ -63,25 +85,12 @@ int checkvalidy(char *line)
 	s = ft_strsplit(line, ' ');
 	if (line[0] == '\0')
 		return (1);
-	if ((s[0][0] >= 65 && s[0][0] <= 90) || s[0][0] == '!' || s[0][0] == '(' || s[0][0] == '=' || s[0][0] == '?')
+	if (check_quotes(line) == 0) // checking duzki v stroke
 	{
-		int i;
-		i = 0;
-		while (s[i] != NULL)
-		{
-			if (s[i][0] >= 65 && s[i][0] <= 90)
-			{
-				if (s[i][1] != '\0' && s[i][1] != ')')
-				{
-					printf("Not valid argument\n");
-					return (0);
-				}
-			}
-			i++;
-		}
-		return (1);	
+		printf("Not valid: duzki\n");
+		return (0);
 	}
-	else
+	if (chaeck_full(s) == 0)
 	{
 		printf("Not validy\n");
 		return (0);
@@ -113,3 +122,94 @@ int checking(int fd)
 	}
 	return (1);
 }
+
+
+int		chaeck_full(char **s)
+{
+	int i;
+	int j;
+
+	i = -1;
+	while (s[++i] != NULL)
+	{
+		if (s[i][0] >= 65 && s[i][0] <= 90 && s[i][1] == '\0')
+		{
+			printf("character = %s\n", s[i]);
+		}
+		else if ((s[i][0] == '+' || s[i][0] == '|' || s[i][0] == '^') && s[i][1] == '\0')
+		{
+			printf("operation = %s\n", s[i]);
+		}
+		else if (s[i][0] == '!')
+		{
+			printf("negative = %s\n", s[i]);
+		}
+		else if (ft_strcmp(s[i], "=>") == 0 || ft_strcmp(s[i], "<=>") == 0)
+		{
+			printf("Inmplement = %s\n", s[i]);
+		}
+		else if (s[i][0] == '=' || s[i][0] == '?')
+		{
+			j = 0;
+			while (s[i][++j] == '\0')
+			{
+				if (s[i][++j] < 65 && s[i][++j] > 90)
+				{
+					printf("EROOR = %s\n", s[i]);
+					return (0);
+				}
+			}
+		}
+		else
+		{
+			printf("ERROR = %s\n", s[i]);
+			return (0);
+		}
+	}
+	return (1);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

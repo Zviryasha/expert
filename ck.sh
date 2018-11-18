@@ -12,3 +12,10 @@
 ./expert_system test/sample.txt
 ./expert_system test/mix.txt				
 ./expert_system test/xor.txt
+./expert_system test/test.txt
+./expert_system test/test1.txt
+./expert_system test/test2.txt
+./expert_system test/test3.txt
+./expert_system test/test4.txt
+./expert_system test/test5.txt
+./expert_system test/test6.txt

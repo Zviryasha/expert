@@ -24,5 +24,7 @@ int allowedsymbols(char *s);
 int checking(int fd);
 int redable(char *s);
 char  *deletcoment(char *s);
+int check_quotes(char *s);
+int		chaeck_full(char **s);
 
 #endif
