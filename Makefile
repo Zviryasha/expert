@@ -2,7 +2,8 @@ NAME = expert_system
 
 SRC = main.c \
 	  get_next_line.c \
-	  checking.c
+	  checking.c \
+	  list.c
 
 OBJ = $(SRC:.c=.o)
 CFLAGS = -Wall -Wextra -Werror 

@@ -78,11 +78,12 @@ int check_quotes(char *s)
 		return (0);
 }
 
-int checkvalidy(char *line)
+int checkvalidy(char *line, t_def **list)
 {
 	char **s;
 
 	s = ft_strsplit(line, ' ');
+	add_def(s, list); // in future should be down
 	if (line[0] == '\0')
 		return (1);
 	if (check_quotes(line) == 0) // checking duzki v stroke
@@ -98,9 +99,10 @@ int checkvalidy(char *line)
 	return (1);
 }
 
-int checking(int fd)
+int checking(int fd, t_def **link)
 {
 	char *line;
+	
 
 	while (get_next_line(fd, &line))
 	{
@@ -110,7 +112,7 @@ int checking(int fd)
 			printf("ERROR: not allowed symbols\n");
 			return (0);
 		}
-		if (checkvalidy(line) == 0)
+		if (checkvalidy(line, link) == 0)
 		{
 			printf("ERROR: Not validy = %s\n", line);
 			return (0);
@@ -128,6 +130,7 @@ int		chaeck_full(char **s)
 {
 	int i;
 	int j;
+	
 
 	i = -1;
 	while (s[++i] != NULL)
@@ -151,6 +154,14 @@ int		chaeck_full(char **s)
 		else if (s[i][0] == '=' || s[i][0] == '?')
 		{
 			j = 0;
+			if (s[i][0] == '?')
+			{
+				if (s[i][1] == '\0')
+				{
+					printf("EROOR = %s\n", s[i]);
+					return (0);
+				}
+			}
 			while (s[i][++j] == '\0')
 			{
 				if (s[i][++j] < 65 && s[i][++j] > 90)

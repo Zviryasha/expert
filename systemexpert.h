@@ -20,11 +20,25 @@
 # include "get_next_line.h"
 # include "libft/libft.h"
 
+typedef struct s_def t_def;
+
+struct s_def
+{
+	char c;
+	t_def *next;
+};
+
+t_def	*add_link(t_def *list, char c);
+void	print_list(t_def *list);
 int allowedsymbols(char *s);
-int checking(int fd);
+int checking(int fd, t_def **link);
 int redable(char *s);
 char  *deletcoment(char *s);
 int check_quotes(char *s);
 int		chaeck_full(char **s);
+int checkvalidy(char *line, t_def **list);
+void check_list(t_def *list);
+void add_def(char **s, t_def **list);
+void delet_dub(t_def **list, t_def *w);
 
 #endif

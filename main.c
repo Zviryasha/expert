@@ -32,6 +32,9 @@ int redable(char *s)
 
 int main(int ac, char **av)
 {
+	t_def *list;
+
+	list = NULL;
 	if (ac == 2)
 	{
 		if (redable(av[1]) == 0)
@@ -39,11 +42,17 @@ int main(int ac, char **av)
 			printf("Not readable file\n");
 			return (0);
 		}
-		checking(redable(av[1]));   // peredayu fd v checking
+		checking(redable(av[1]), &list);   // peredayu fd v checking
+		
+		check_list(list);
+		printf("\033[1;33m"); 
 		printf("valid input\n");
+		printf("\033[0m");
 	}
 	else
 	{
+		printf("\033[1;31m"); 
 		printf("Not valid intup\n");
+		printf("\033[0m");
 	}
 }
