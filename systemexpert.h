@@ -39,6 +39,6 @@ int		chaeck_full(char **s);
 int checkvalidy(char *line, t_def **list);
 void check_list(t_def *list);
 void add_def(char **s, t_def **list);
-void delet_dub(t_def **list, t_def *w);
+int	check_dub(t_def *list, char s);
 
 #endif

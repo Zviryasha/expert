@@ -34,15 +34,18 @@ void	print_list(t_def *list)
 	}
 }
 
-void delet_def(t_def **list, t_def *w)
+int check_dub(t_def *list, char s)
 {
 	int i;
 
 	i = 0;
-	while (list->next)
+	while (list)
 	{
-		if (list->next->)
+		if (list->c == s)
+			return (1);
+		list = list->next;
 	}
+	return (0);
 }
 
 void add_def(char **s, t_def **list)
@@ -58,7 +61,8 @@ void add_def(char **s, t_def **list)
 		{
 			if (s[i][j] >= 65 && s[i][j] <= 90)
 			{
-				*list = add_link(*list, s[i][j]);
+				if (check_dub(*list, s[i][j]) == 0)
+					*list = add_link(*list, s[i][j]);
 			}
 		}
 	}
@@ -66,35 +70,8 @@ void add_def(char **s, t_def **list)
 
 void check_list(t_def *list)
 {
-	t_def	*l;
-	t_def	*y;
-	t_def	*w;
-	int		c;
 
-	y = list;
-	w = NULL;
 	printf("Normal list -------\n");
 	print_list(list);	
 	printf("\nNormal list -------\n");
-	while (list)
-	{
-		l = list;
-		c  = 0;
-		while (l)
-		{
-			if (list->c == l->c)
-				c++;
-			l = l->next;
-		}
-		if (c > 1)
-		{
-			w = add_link(w, list->c);
-		//	printf("LOOOOOOOOOOOOOOL = %s\n", list->str);
-		}
-		list = list->next;
-	}
-	printf("dublicates list -------\n");
-	print_list(w);
-	printf("\ndublicates list -------\n");
-	delet_dub(&list, w);
 }
