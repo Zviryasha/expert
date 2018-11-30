@@ -117,6 +117,8 @@ int checking(int fd, t_def **link)
 			printf("ERROR: Not validy = %s\n", line);
 			return (0);
 		}
+		if (line[0] == '=')
+			set_true(line, link);
 		printf("\033[1;34m"); //Set the text to the color red.
 		printf("DOOD\n"); //Display Hello in red.
 		printf("\033[0m"); 	//	printf("%s\n", line);

@@ -24,8 +24,9 @@ typedef struct s_def t_def;
 
 struct s_def
 {
-	char c;
-	t_def *next;
+	char	c;
+	int		i;
+	t_def	*next;
 };
 
 t_def	*add_link(t_def *list, char c);
@@ -40,5 +41,7 @@ int checkvalidy(char *line, t_def **list);
 void check_list(t_def *list);
 void add_def(char **s, t_def **list);
 int	check_dub(t_def *list, char s);
+void set_true(char *line, t_def **link);
+void rigth(t_def *link, char s);
 
 #endif

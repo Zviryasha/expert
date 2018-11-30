@@ -29,7 +29,7 @@ void	print_list(t_def *list)
 {
 	while (list)
 	{
-		ft_putchar(list->c);
+		printf("%c = %d\n", list->c, list->i);
 		list = list->next;
 	}
 }
@@ -62,9 +62,33 @@ void add_def(char **s, t_def **list)
 			if (s[i][j] >= 65 && s[i][j] <= 90)
 			{
 				if (check_dub(*list, s[i][j]) == 0)
+				{
 					*list = add_link(*list, s[i][j]);
+					(*list)->i = 0;
+				}
 			}
 		}
+	}
+}
+
+void rigth(t_def *link, char s)
+{
+	while (link)
+	{
+		if ((link)->c == s)
+			(link)->i = 1;
+		link = (link)->next;
+	}
+}
+
+void set_true(char *line, t_def **link)
+{
+	int i;
+
+	i = 0;
+	while (line[++i] != '\0')
+	{
+		rigth(*link, line[i]);
 	}
 }
 

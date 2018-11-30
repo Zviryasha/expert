@@ -37,6 +37,7 @@ int main(int ac, char **av)
 	list = NULL;
 	if (ac == 2)
 	{
+		printf("_____--------- %s --------_______\n", av[1]);
 		if (redable(av[1]) == 0)
 		{
 			printf("Not readable file\n");
