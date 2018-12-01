@@ -102,8 +102,11 @@ int checkvalidy(char *line, t_def **list)
 int checking(int fd, t_def **link)
 {
 	char *line;
+	char **s;
+	int i;
 	
-
+	i = 0;
+	s = (char **)malloc(sizeof(char *) * 100);
 	while (get_next_line(fd, &line))
 	{
 		line = deletcoment(line); // deleting comments
@@ -119,10 +122,28 @@ int checking(int fd, t_def **link)
 		}
 		if (line[0] == '=')
 			set_true(line, link);
-		printf("\033[1;34m"); //Set the text to the color red.
-		printf("DOOD\n"); //Display Hello in red.
-		printf("\033[0m"); 	//	printf("%s\n", line);
+		else if (line[0] == '?')
+			set_find(line, link);
+		else
+		{
+			if (line[0] != '\0')
+			{
+				s[i] = ft_strnew(ft_strlen(line) + 1);
+				ft_strcpy(s[i], line);
+				i++;
+			}
+		}
+//		printf("\033[1;34m"); //Set the text to the color red.
+//		printf("DOOD\n"); //Display Hello in red.
+//		printf("\033[0m"); 	//	printf("%s\n", line);
 		free (line);
+	}
+	s[i] = NULL;
+	i = 0;
+	while (s[i] != NULL)
+	{
+		printf("line =  %s\n", s[i]);
+		i++;
 	}
 	return (1);
 }
@@ -130,7 +151,8 @@ int checking(int fd, t_def **link)
 
 int		chaeck_full(char **s)
 {
-	int i;
+	s = NULL;
+/*	int i;
 	int j;
 	
 
@@ -139,7 +161,7 @@ int		chaeck_full(char **s)
 	{
 		if (s[i][0] >= 65 && s[i][0] <= 90 && s[i][1] == '\0')
 		{
-			printf("character = %s\n", s[i]);
+		printf("character = %s\n", s[i]);
 		}
 		else if ((s[i][0] == '+' || s[i][0] == '|' || s[i][0] == '^') && s[i][1] == '\0')
 		{
@@ -178,7 +200,7 @@ int		chaeck_full(char **s)
 			printf("ERROR = %s\n", s[i]);
 			return (0);
 		}
-	}
+	}*/
 	return (1);
 }
 

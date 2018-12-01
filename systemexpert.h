@@ -26,6 +26,7 @@ struct s_def
 {
 	char	c;
 	int		i;
+	int		f;
 	t_def	*next;
 };
 
@@ -43,5 +44,7 @@ void add_def(char **s, t_def **list);
 int	check_dub(t_def *list, char s);
 void set_true(char *line, t_def **link);
 void rigth(t_def *link, char s);
+void set_find(char *line, t_def **link);
+void left(t_def *link, char s);
 
 #endif

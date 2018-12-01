@@ -29,7 +29,7 @@ void	print_list(t_def *list)
 {
 	while (list)
 	{
-		printf("%c = %d\n", list->c, list->i);
+		printf(" alfa = %c\n Is true = %d\n Find = %d\n", list->c, list->i, list->f);
 		list = list->next;
 	}
 }
@@ -78,6 +78,29 @@ void rigth(t_def *link, char s)
 		if ((link)->c == s)
 			(link)->i = 1;
 		link = (link)->next;
+	}
+}
+
+void left(t_def *link, char s)
+{
+	while (link)
+	{
+		if ((link)->c == s)
+			(link)->f = 1;
+		link = (link)->next;
+	}
+}
+
+
+
+void set_find(char *line, t_def **link)
+{
+	int i;
+
+	i = 0;
+	while (line[++i] != '\0')
+	{
+		left(*link, line[i]);
 	}
 }
 
