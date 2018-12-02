@@ -23,8 +23,28 @@ int ck_rules(char **s)
 			return (0);
 		if (check_quotes(s[i]) == 0)
 			return (0);
+		delete_qz(s);
 	}
 	return (1);
+}
+
+void	delete_qz(char **s)
+{
+	int i;
+	int j;
+	char **r;
+
+	i = -1;
+	while (s[++i] != NULL)
+	{
+		j = -1;
+		while (s[i][++j] != '\0')
+		{
+			if (s[i][j] == '!' || s[i][j] == '(' || s[i][j] == ')')
+				s[i][j] == ' ';
+		}
+	}
+	while ()
 }
 
 int check_quotes(char *s)
