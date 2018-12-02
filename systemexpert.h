@@ -20,6 +20,16 @@
 # include "get_next_line.h"
 # include "libft/libft.h"
 
+
+typedef struct          s_expert
+{
+    char                alpha;
+    int                 status;
+    int                 f_facts;
+    struct s_expert     *next;
+}                       t_expert;
+
+
 typedef struct s_def t_def;
 
 struct s_def
@@ -33,7 +43,7 @@ struct s_def
 t_def	*add_link(t_def *list, char c);
 void	print_list(t_def *list);
 int allowedsymbols(char *s);
-int checking(int fd, t_def **link);
+int checking(int fd, t_def **link, char ***s);
 int redable(char *s);
 char  *deletcoment(char *s);
 int check_quotes(char *s);
@@ -46,5 +56,20 @@ void set_true(char *line, t_def **link);
 void rigth(t_def *link, char s);
 void set_find(char *line, t_def **link);
 void left(t_def *link, char s);
+void check_s(char ***s);
+t_expert *add_exp(t_expert *list, char c, int i);
+void prepare(t_expert **exp,  t_def	*list);
+void print_exp(t_expert *exp);
 
+
+ int             is_alpha(char c);
+  int             alpha_amb(t_expert *head, char alpha);
+  int                 edit_value(t_expert **head, char alpha, int status, int amb);
+  int                 alpha_status(t_expert *head, char alpha);
+//static int      or_exist(char *line);
+//static int             check_truth(t_expert **head, char *first, int back_truth, int fuck);
+//static int     break_into_two(char *line, char **first, char **last);
+//static int     make_true(t_expert **head, char *line, char *first, int prev_amb);
+//static int      prev_amb(char *line, t_expert *head);
+void            algo(t_expert **head, char **rules);
 #endif

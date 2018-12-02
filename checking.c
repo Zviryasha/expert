@@ -99,14 +99,13 @@ int checkvalidy(char *line, t_def **list)
 	return (1);
 }
 
-int checking(int fd, t_def **link)
+int checking(int fd, t_def **link, char ***s)
 {
 	char *line;
-	char **s;
 	int i;
 	
 	i = 0;
-	s = (char **)malloc(sizeof(char *) * 100);
+	*s = (char **)malloc(sizeof(char *) * 100);
 	while (get_next_line(fd, &line))
 	{
 		line = deletcoment(line); // deleting comments
@@ -128,8 +127,8 @@ int checking(int fd, t_def **link)
 		{
 			if (line[0] != '\0')
 			{
-				s[i] = ft_strnew(ft_strlen(line) + 1);
-				ft_strcpy(s[i], line);
+				(*s)[i] = ft_strnew(ft_strlen(line) + 1);
+				ft_strcpy((*s)[i], line);
 				i++;
 			}
 		}
@@ -138,11 +137,11 @@ int checking(int fd, t_def **link)
 //		printf("\033[0m"); 	//	printf("%s\n", line);
 		free (line);
 	}
-	s[i] = NULL;
+	(*s)[i] = NULL;
 	i = 0;
-	while (s[i] != NULL)
+	while ((*s)[i] != NULL)
 	{
-		printf("line =  %s\n", s[i]);
+		printf("line =  %s\n", (*s)[i]);
 		i++;
 	}
 	return (1);
