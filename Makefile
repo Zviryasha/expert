@@ -5,7 +5,8 @@ SRC = main.c \
 	  checking.c \
 	  list.c \
 	  wings.c \
-	  algorithm.c  
+	  algorithm.c \
+	  check_rules.c  
 
 OBJ = $(SRC:.c=.o)
 CFLAGS = -Wall -Wextra -Werror 

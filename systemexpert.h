@@ -60,6 +60,7 @@ void check_s(char ***s);
 t_expert *add_exp(t_expert *list, char c, int i);
 void prepare(t_expert **exp,  t_def	*list);
 void print_exp(t_expert *exp);
+int ck_rules(char **s);
 
 
  int             is_alpha(char c);

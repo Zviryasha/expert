@@ -34,7 +34,6 @@ void prepare(t_expert **exp,  t_def	*list)
 	{
 		(*exp) = add_exp(*exp, list->c, list->i);
 		list = list->next;
-	//	printf("exp->alpha =  %c\n", (*exp)->alpha);
 	}
 }
 

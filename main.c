@@ -49,10 +49,12 @@ int main(int ac, char **av)
 		}
 		checking(redable(av[1]), &list, &s);   // peredayu fd v checking
 		check_s(&s);
+		if (ck_rules(s) == 0) // chening rules
+			return (0);
 		prepare(&exp, list);
 		algo(&exp, s);
-		print_exp(exp);
-		check_list(list);
+	//	print_exp(exp);
+	//	check_list(list);
 		printf("\033[1;33m"); 
 		printf("valid input\n");
 		printf("\033[0m");
