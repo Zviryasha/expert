@@ -72,6 +72,7 @@ void check_s(char ***s)
 	{
 		t = ft_strsplit((*s)[i], ' ');
 		e = ft_strnew(100);
+		
 		j = 0;
 		while (t[j] != NULL)
 		{

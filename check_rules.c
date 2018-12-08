@@ -19,6 +19,7 @@ int ck_rules(char **s)
 	i = -1;
 	while (s[++i] != NULL)
 	{
+		printf("s = %s\n", s[i]);
 		if (allowedsymbols(s[i]) == 0)
 			return (0);
 		if (check_quotes(s[i]) == 0)
@@ -33,6 +34,7 @@ void	delete_qz(char **s)
 	int i;
 	int j;
 	char **r;
+	char *t;
 
 	i = -1;
 	while (s[++i] != NULL)
@@ -41,10 +43,21 @@ void	delete_qz(char **s)
 		while (s[i][++j] != '\0')
 		{
 			if (s[i][j] == '!' || s[i][j] == '(' || s[i][j] == ')')
-				s[i][j] == ' ';
+				s[i][j] = ' ';
 		}
 	}
-	while ()
+	i = -1;
+	while (s[++i] != NULL)
+	{
+		j = -1;
+		r = ft_strsplit(s[i], ' ');
+		t = ft_strnew(50);
+		while (r[++j] != NULL)
+		{
+			t = ft_strjoin(t, r[j]);
+		}
+		printf("t = %s\n", t);
+	}
 }
 
 int check_quotes(char *s)
@@ -80,7 +93,9 @@ int allowedsymbols(char *s)
 	{
 		if (s[i] >= 65 && s[i] <= 90)
 			continue;
-		else if ((s[i] >= 60 && s[i] <= 63) || s[i] == '!' || s[i] == ')')
+		else if (s[i] >= 60 && s[i] <= 63)
+			continue;
+		else if (s[i] == '!' || s[i] == ')')
 			continue;
 		else if (s[i] == '^' || s[i] == '|' || s[i] == '+' || s[i] == '(')
 			continue;
@@ -88,6 +103,7 @@ int allowedsymbols(char *s)
 			continue;
 		else
 		{
+			printf("kaka = %c\n", s[i]);
 			printf("\033[0;31mERROR:\033[0mNot alloved symbols in line = %s\n", s);
 			return (0);
 		}
